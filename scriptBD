@@ -1,0 +1,138 @@
+-- ============================================
+-- BASE DE DATOS: CineDB
+-- Script completo con datos de prueba
+-- ============================================
+
+DROP DATABASE IF EXISTS CineDB;
+CREATE DATABASE CineDB;
+USE CineDB;
+
+-- ============================================
+-- 1. TABLA DIRECTORES
+-- ============================================
+CREATE TABLE Directores (
+    IDDirector INT AUTO_INCREMENT PRIMARY KEY,
+    Director VARCHAR(100) NOT NULL
+);
+
+-- ============================================
+-- 2. TABLA CATEGORÍAS
+-- ============================================
+CREATE TABLE Categorias (
+    Identificador INT AUTO_INCREMENT PRIMARY KEY,
+    Categoria VARCHAR(50) NOT NULL
+);
+
+-- ============================================
+-- 3. TABLA PELÍCULAS
+-- ============================================
+CREATE TABLE Peliculas (
+    Identificador INT AUTO_INCREMENT PRIMARY KEY,
+    Titulo VARCHAR(150) NOT NULL,
+    IDDirector INT,
+    Duracion INT,
+    IDCategoria INT,
+    Sinopsis TEXT,
+    FOREIGN KEY (IDDirector) REFERENCES Directores(IDDirector),
+    FOREIGN KEY (IDCategoria) REFERENCES Categorias(Identificador)
+);
+
+-- ============================================
+-- 4. INSERTAR DIRECTORES
+-- ============================================
+INSERT INTO Directores (Director) VALUES 
+    ('Christopher Nolan'),        -- 1
+    ('Greta Gerwig'),             -- 2
+    ('Steven Spielberg'),         -- 3
+    ('Quentin Tarantino'),        -- 4
+    ('Denis Villeneuve'),         -- 5
+    ('Pedro Almodóvar'),          -- 6
+    ('Guillermo del Toro'),       -- 7
+    ('Bong Joon-ho'),             -- 8
+    ('Sofia Coppola'),            -- 9
+    ('David Fincher'),            -- 10
+    ('Alfonso Cuarón'),           -- 11
+    ('Wes Anderson'),             -- 12
+    ('Jordan Peele'),             -- 13
+    ('Chloé Zhao');               -- 14
+
+-- ============================================
+-- 5. INSERTAR CATEGORÍAS
+-- ============================================
+INSERT INTO Categorias (Categoria) VALUES 
+    ('Ciencia Ficción'),          -- 1
+    ('Comedia'),                  -- 2
+    ('Drama'),                    -- 3
+    ('Terror'),                   -- 4
+    ('Animación'),                -- 5
+    ('Acción'),                   -- 6
+    ('Suspenso'),                 -- 7
+    ('Romance'),                  -- 8
+    ('Aventura'),                 -- 9
+    ('Fantasía');                 -- 10
+
+-- ============================================
+-- 6. INSERTAR PELÍCULAS
+-- ============================================
+INSERT INTO Peliculas (Titulo, IDDirector, Duracion, IDCategoria, Sinopsis) VALUES 
+    -- Christopher Nolan (1)
+    ('Inception', 1, 148, 1, 'Un ladrón que roba secretos a través de los sueños.'),
+    ('Interstellar', 1, 169, 1, 'Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.'),
+    ('El Caballero Oscuro', 1, 152, 6, 'Batman se enfrenta al Joker, un criminal anárquico que busca sembrar el caos en Gotham City.'),
+    ('Oppenheimer', 1, 180, 3, 'La historia del científico J. Robert Oppenheimer y su papel en el desarrollo de la bomba atómica.'),
+
+    -- Greta Gerwig (2)
+    ('Barbie', 2, 114, 2, 'Barbie y Ken viven en Barbieland.'),
+    ('Mujercitas', 2, 135, 3, 'Las hermanas March atraviesan la adolescencia y la adultez en la América posterior a la Guerra Civil.'),
+
+    -- Steven Spielberg (3)
+    ('Jurassic Park', 3, 127, 9, 'Un parque temático con dinosaurios clonados se convierte en una pesadilla cuando los animales escapan.'),
+    ('La Lista de Schindler', 3, 195, 3, 'Un empresario alemán salva la vida de más de mil judíos durante el Holocausto.'),
+
+    -- Quentin Tarantino (4)
+    ('Pulp Fiction', 4, 154, 7, 'Las vidas entrelazadas de mafiosos, boxeadores y ladrones en Los Ángeles se cruzan de forma violenta.'),
+    ('Kill Bill', 4, 111, 6, 'Una asesina busca venganza contra el escuadrón que intentó matarla el día de su boda.'),
+
+    -- Denis Villeneuve (5)
+    ('Dune', 5, 155, 1, 'Paul Atreides debe cumplir su destino en un planeta desértico donde se libra una guerra por una especia invaluable.'),
+    ('Blade Runner 2049', 5, 164, 1, 'Un blade runner descubre un secreto que podría sumir en el caos lo que queda de la sociedad.'),
+
+    -- Pedro Almodóvar (6)
+    ('Todo Sobre Mi Madre', 6, 101, 3, 'Una mujer busca al padre de su hijo fallecido y encuentra una red de amistades inesperadas.'),
+    ('La Piel que Habito', 6, 120, 7, 'Un cirujano plástico experimenta con la piel humana tras la muerte de su esposa.'),
+
+    -- Guillermo del Toro (7)
+    ('El Laberinto del Fauno', 7, 118, 10, 'Una niña escapa de la brutalidad de la posguerra española a través de un mundo fantástico.'),
+    ('La Forma del Agua', 7, 123, 10, 'Una empleada muda de un laboratorio secreto se enamora de una criatura anfibia capturada.'),
+
+    -- Bong Joon-ho (8)
+    ('Parásitos', 8, 132, 7, 'Una familia pobre se infiltra en la vida de una familia adinerada con consecuencias inesperadas.'),
+    ('Memories of Murder', 8, 132, 7, 'Dos detectives investigan una serie de asesinatos en serie en la Corea rural de los 80.'),
+
+    -- Sofia Coppola (9)
+    ('Lost in Translation', 9, 102, 8, 'Un actor en declive y una joven recién casada forjan una amistad en Tokio.'),
+
+    -- David Fincher (10)
+    ('Fight Club', 10, 139, 7, 'Un oficinista insomne y un vendedor de jabón fundan un club de peleas clandestino.'),
+    ('Se7en', 10, 127, 7, 'Dos detectives persiguen a un asesino en serie que castiga los siete pecados capitales.'),
+
+    -- Alfonso Cuarón (11)
+    ('Roma', 11, 135, 3, 'La vida de una empleada doméstica en la Ciudad de México de los años 70.'),
+
+    -- Wes Anderson (12)
+    ('El Gran Hotel Budapest', 12, 99, 2, 'Un conserje y su botones se ven envueltos en el robo de una pintura invaluable.'),
+
+    -- Jordan Peele (13)
+    ('Get Out', 13, 104, 4, 'Un joven afroamericano descubre un oscuro secreto cuando visita a la familia de su novia.'),
+
+    -- Chloé Zhao (14)
+    ('Nomadland', 14, 107, 3, 'Una mujer recorre el oeste de Estados Unidos viviendo como nómada tras perderlo todo.');
+
+-- ============================================
+-- 7. VERIFICACIÓN
+-- ============================================
+SELECT 'Directores' AS Tabla, COUNT(*) AS Total FROM Directores
+UNION ALL
+SELECT 'Categorías', COUNT(*) FROM Categorias
+UNION ALL
+SELECT 'Películas', COUNT(*) FROM Peliculas;
